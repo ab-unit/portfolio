@@ -290,76 +290,64 @@ export default function App() {
             </span>
           </div>
 
-          {/* PORTFOLIO ACCORDIONS GRID */}
-          <div className="space-y-6">
-            {PROJECTS.map((project) => {
-              const isHovered = hoveredId === project.id;
-              return (
-                <div
-                  key={project.id}
-                  onMouseEnter={() => setHoveredId(project.id)}
-                  className={`group block p-5 sm:p-6 rounded-xl border transition-all duration-200 bg-white ${
-                    isHovered
-                      ? "border-stone-300 shadow-sm"
-                      : "border-stone-200/60 lg:opacity-60"
-                  }`}
-                >
-                  {/* Title Headers */}
-                  <div className="flex justify-between items-baseline gap-4 mb-3">
-                    <div className="flex items-baseline gap-2.5">
-                      <span className="font-mono text-xs text-stone-400">
-                        {project.id}
-                      </span>
-                      <h3 className="text-xl font-normal text-stone-900">
-                        {project.title}
-                      </h3>
-                    </div>
-                    <span className="text-xs text-stone-400 italic">
-                      {project.tag}
-                    </span>
-                  </div>
+{/* Replace the PROJECTS.map container inside your right panel with this */}
+{PROJECTS.map((project) => {
+  const isHovered = hoveredId === project.id;
+  return (
+    <div
+      key={project.id}
+      onMouseEnter={() => setHoveredId(project.id)}
+      className={`group block p-5 sm:p-6 rounded-xl border transition-all duration-200 bg-white ${
+        isHovered 
+          ? "border-stone-300 shadow-sm opacity-100" 
+          : "border-stone-200/60 opacity-100 lg:opacity-60"
+      }`}
+    >
+      {/* Title Headers */}
+      <div className="flex justify-between items-baseline gap-4 mb-3">
+        <div className="flex items-baseline gap-2.5">
+          <span className="font-mono text-xs text-stone-400">{project.id}</span>
+          <h3 className="text-xl font-normal text-stone-900">{project.title}</h3>
+        </div>
+        <span className="text-xs text-stone-400 italic">
+          {project.tag}
+        </span>
+      </div>
 
-                  {/* MINI PROFILE PREVIEW PICTURE FRAME */}
-                  <div className="overflow-hidden rounded bg-stone-100 aspect-[21/9] h-32 sm:h-40 w-full mb-4 border border-stone-200/40 relative">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-500"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <p className="text-sm text-stone-500 leading-relaxed max-w-xl mb-4">
-                    {project.description}
+      {/* MINI PROFILE PREVIEW PICTURE FRAME */}
+      <div className="overflow-hidden rounded bg-stone-100 aspect-[21/9] h-32 sm:h-40 w-full mb-4 border border-stone-200/40 relative">
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          className="w-full h-full object-cover grayscale-0 lg:grayscale lg:opacity-90 lg:group-hover:grayscale-0 lg:group-hover:opacity-100 transition-all duration-500"
+          loading="lazy"
+        />
+      </div>
+      
+      <p className="text-sm text-stone-500 leading-relaxed max-w-xl mb-4">
+        {project.description}
                   </p>
 
-                  <div className="flex flex-wrap justify-between items-center gap-4 border-t border-stone-100 pt-3">
-                    <div className="flex flex-wrap gap-1">
-                      {project.stack.map((s) => (
-                        <span
-                          key={s}
-                          className="text-[11px] px-2 py-0.5 rounded border border-stone-100 bg-stone-50/50 text-stone-600"
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                    <span
-                      className={`text-xs font-medium text-stone-900 inline-flex items-center gap-1 transition-all ${
-                        isHovered
-                          ? "opacity-100 translate-x-0"
-                          : "lg:opacity-0 lg:-translate-x-2"
-                      }`}
-                    >
-                      View project →
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+      <div className="flex flex-wrap justify-between items-center gap-4 border-t border-stone-100 pt-3">
+        <div className="flex flex-wrap gap-1">
+          {project.stack.map((s) => (
+            <span key={s} className="text-[11px] px-2 py-0.5 rounded border border-stone-100 bg-stone-50/50 text-stone-600">
+              {s}
+            </span>
+          ))}
+        </div>
+        <span className={`text-xs font-medium text-stone-900 inline-flex items-center gap-1 transition-all ${
+          isHovered ? "opacity-100 translate-x-0" : "opacity-100 lg:opacity-0 lg:-translate-x-2"
+        }`}>
+          View project →
+        </span>
+      </div>
+    </div>
+  );
+})}
+
           </div>
         </div>
-      </div>
 
       {/* FOOTER */}
       <footer className="w-full border-t border-stone-200 bg-stone-100/50 py-8 px-6 lg:px-16 relative z-10">
