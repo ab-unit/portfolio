@@ -5,37 +5,72 @@ const PROJECTS = [
     id: "01",
     title: "Aether Platform",
     tag: "Analytics Dashboard",
-    description: "A real-time dashboard made to display complicated dataset statistics quickly.",
+    description:
+      "A real-time dashboard made to display complicated dataset statistics quickly.",
     stack: ["React", "TypeScript", "Next.js"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "02",
     title: "Nova Commerce",
     tag: "Online Store",
-    description: "A clean e-commerce shopping experience with smooth page transitions and Stripe payments.",
+    description:
+      "A clean e-commerce shopping experience with smooth page transitions and Stripe payments.",
     stack: ["React", "Tailwind CSS", "Stripe"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "03",
     title: "Orbit Studio",
     tag: "Agency Website",
-    description: "A portfolio site for a creative studio using subtle 3D interactions and animations.",
+    description:
+      "A portfolio site for a creative studio using subtle 3D interactions and animations.",
     stack: ["Three.js", "WebGL", "Vite"],
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80"
-  }
+    image:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+  },
 ];
 
 const TOOLS_LEARNED = [
-  "React", "Next.js", "TypeScript", "JavaScript", 
-  "Tailwind CSS", "Three.js", "WebGL", "Node.js", 
-  "Git / GitHub", "Figma", "Framer Motion", "Vite"
+  "React",
+  "Next.js",
+  "vue.js",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind CSS",
+  "Three.js",
+  "WebGL",
+  "Node.js",
+  "Git / GitHub",
+  "Figma",
+  "Framer Motion",
+  "Vite",
+  "docker",
+  "vercel",
+  "strapi",
+  "payload CMS",
+  "stripe",
+  "prisma",
+  "mongodb",
+  "postgresql",
+  "redis",
+  "graphql",
+  "apollo",
+  "aws",
+  "python",
+  "gcp",
 ];
 
 interface ThreeJs {
   Scene: new () => { add: (obj: unknown) => void };
-  PerspectiveCamera: new (fov: number, aspect: number, near: number, far: number) => {
+  PerspectiveCamera: new (
+    fov: number,
+    aspect: number,
+    near: number,
+    far: number,
+  ) => {
     position: { z: number };
     aspect: number;
     updateProjectionMatrix: () => void;
@@ -47,10 +82,20 @@ interface ThreeJs {
     render: (s: unknown, c: unknown) => void;
     dispose?: () => void;
   };
-  BufferGeometry: new () => { setAttribute: (n: string, attr: unknown) => void };
+  BufferGeometry: new () => {
+    setAttribute: (n: string, attr: unknown) => void;
+  };
   BufferAttribute: new (arr: Float32Array, size: number) => unknown;
-  PointsMaterial: new (p: { color: number; size: number; transparent: boolean; opacity: number }) => unknown;
-  Points: new (g: unknown, m: unknown) => { rotation: { y: number }; position: { x: number; y: number } };
+  PointsMaterial: new (p: {
+    color: number;
+    size: number;
+    transparent: boolean;
+    opacity: number;
+  }) => unknown;
+  Points: new (
+    g: unknown,
+    m: unknown,
+  ) => { rotation: { y: number }; position: { x: number; y: number } };
 }
 
 type ThreeWindow = Window & { THREE?: ThreeJs };
@@ -70,7 +115,8 @@ export default function App() {
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
     script.async = true;
     document.head.appendChild(script);
 
@@ -86,11 +132,19 @@ export default function App() {
       if (!THREE) return;
 
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(60, threeRef.current.clientWidth / threeRef.current.clientHeight, 0.1, 100);
+      camera = new THREE.PerspectiveCamera(
+        60,
+        threeRef.current.clientWidth / threeRef.current.clientHeight,
+        0.1,
+        100,
+      );
       camera.position.z = 6;
 
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-      renderer.setSize(threeRef.current.clientWidth, threeRef.current.clientHeight);
+      renderer.setSize(
+        threeRef.current.clientWidth,
+        threeRef.current.clientHeight,
+      );
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       threeRef.current.appendChild(renderer.domElement);
 
@@ -104,13 +158,16 @@ export default function App() {
         positions[i + 2] = (Math.random() - 0.5) * 6;
       }
 
-      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3),
+      );
 
       const material = new THREE.PointsMaterial({
         color: 0x78716c,
         size: 0.05,
         transparent: true,
-        opacity: 0.25
+        opacity: 0.25,
       });
 
       particles = new THREE.Points(geometry, material);
@@ -119,8 +176,10 @@ export default function App() {
       const animate = () => {
         if (!particles || !renderer || !scene || !camera) return;
         particles.rotation.y += 0.0002;
-        particles.position.x += (mouse.current.x * 0.2 - particles.position.x) * 0.04;
-        particles.position.y += (mouse.current.y * 0.2 - particles.position.y) * 0.04;
+        particles.position.x +=
+          (mouse.current.x * 0.2 - particles.position.x) * 0.04;
+        particles.position.y +=
+          (mouse.current.y * 0.2 - particles.position.y) * 0.04;
 
         renderer.render(scene, camera);
         frameId = requestAnimationFrame(animate);
@@ -130,9 +189,13 @@ export default function App() {
 
     const handleResize = () => {
       if (!threeRef.current || !camera || !renderer) return;
-      camera.aspect = threeRef.current.clientWidth / threeRef.current.clientHeight;
+      camera.aspect =
+        threeRef.current.clientWidth / threeRef.current.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(threeRef.current.clientWidth, threeRef.current.clientHeight);
+      renderer.setSize(
+        threeRef.current.clientWidth,
+        threeRef.current.clientHeight,
+      );
     };
     window.addEventListener("resize", handleResize, { passive: true });
 
@@ -150,14 +213,13 @@ export default function App() {
 
   return (
     <div className="bg-stone-50/40 text-stone-900 min-h-screen antialiased selection:bg-stone-200">
-      
       {/* HEADERBAR */}
       <header className="fixed top-0 left-0 w-full h-16 lg:h-20 px-6 lg:px-16 flex justify-between items-center z-50 backdrop-blur-md bg-stone-50/60 lg:bg-transparent border-b border-stone-200 lg:border-none">
         <span className="text-sm font-semibold tracking-tight">
           Ahmed Bahobeshi
         </span>
-        <a 
-          href="mailto:ahmed.bahobeshi@hotmail.com" 
+        <a
+          href="mailto:ahmed.bahobeshi@hotmail.com"
           className="text-xs font-medium uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors"
         >
           Email Me
@@ -166,16 +228,18 @@ export default function App() {
 
       {/* SPLIT LAYOUT WINDOW */}
       <div className="flex flex-col lg:flex-row min-h-screen">
-        
-        {/* LEFT COMPONENT COLUMN (FIXED DESKTOP VIEW) */}
-        <div className="w-full lg:w-[45%] lg:fixed lg:h-screen left-0 top-0 flex flex-col justify-center p-6 pt-24 pb-12 lg:p-16 lg:pt-20 border-b lg:border-b-0 lg:border-r border-stone-200 bg-stone-100/30 overflow-y-auto">
-          
-          <div ref={threeRef} className="absolute inset-0 z-0 pointer-events-none mix-blend-multiply" />
+        {/* LEFT COMPONENT COLUMN (FIXED DESKTOP VIEW WITH HIDDEN SCROLLBAR) */}
+        <div className="w-full lg:w-[45%] lg:fixed lg:h-screen left-0 top-0 flex flex-col justify-center p-6 pt-24 pb-12 lg:p-16 lg:pt-20 border-b lg:border-b-0 lg:border-r border-stone-200 bg-stone-100/30 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div
+            ref={threeRef}
+            className="absolute inset-0 z-0 pointer-events-none mix-blend-multiply"
+          />
 
           <div className="relative z-10 max-w-md space-y-8">
             <div>
               <h1 className="text-3xl sm:text-4xl font-light tracking-tight text-stone-900 leading-[1.2]">
-                I build clean, interactive websites that look good and run smoothly.
+                I build clean, interactive websites that look good and run
+                smoothly.
               </h1>
               <p className="mt-3 text-stone-400 text-xs uppercase tracking-wider font-medium">
                 Based in Stockholm, Sweden
@@ -188,7 +252,10 @@ export default function App() {
                 About Me
               </span>
               <p className="text-stone-600 text-sm leading-relaxed font-normal">
-                I like writing clean code and designing websites that load quickly and work well on any device. I avoid unnecessary features and focus on making things straightforward for the person using it.
+                I like writing clean code and designing websites that load
+                quickly and work well on any device. I avoid unnecessary
+                features and focus on making things straightforward for the
+                person using it.
               </p>
             </div>
 
@@ -199,8 +266,8 @@ export default function App() {
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {TOOLS_LEARNED.map((tool) => (
-                  <span 
-                    key={tool} 
+                  <span
+                    key={tool}
                     className="text-[11px] font-mono bg-stone-200/40 text-stone-600 px-2.5 py-0.5 rounded transition-colors hover:bg-stone-200/70"
                   >
                     {tool}
@@ -213,9 +280,10 @@ export default function App() {
 
         {/* RIGHT SCROLL PANEL: COMPACT CHASSIS CHANNELS */}
         <div className="w-full lg:w-[55%] lg:ml-[45%] p-6 py-12 lg:p-16 lg:pt-36 space-y-12">
-          
           <div className="flex justify-between items-center border-b border-stone-200 pb-3">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Selected Projects</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
+              Selected Projects
+            </span>
             <span className="inline-flex items-center gap-1.5 text-xs text-stone-500">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600/70" />
               Available for work
@@ -231,16 +299,20 @@ export default function App() {
                   key={project.id}
                   onMouseEnter={() => setHoveredId(project.id)}
                   className={`group block p-5 sm:p-6 rounded-xl border transition-all duration-200 bg-white ${
-                    isHovered 
-                      ? "border-stone-300 shadow-sm" 
+                    isHovered
+                      ? "border-stone-300 shadow-sm"
                       : "border-stone-200/60 lg:opacity-60"
                   }`}
                 >
                   {/* Title Headers */}
                   <div className="flex justify-between items-baseline gap-4 mb-3">
                     <div className="flex items-baseline gap-2.5">
-                      <span className="font-mono text-xs text-stone-400">{project.id}</span>
-                      <h3 className="text-xl font-normal text-stone-900">{project.title}</h3>
+                      <span className="font-mono text-xs text-stone-400">
+                        {project.id}
+                      </span>
+                      <h3 className="text-xl font-normal text-stone-900">
+                        {project.title}
+                      </h3>
                     </div>
                     <span className="text-xs text-stone-400 italic">
                       {project.tag}
@@ -249,14 +321,14 @@ export default function App() {
 
                   {/* MINI PROFILE PREVIEW PICTURE FRAME */}
                   <div className="overflow-hidden rounded bg-stone-100 aspect-[21/9] h-32 sm:h-40 w-full mb-4 border border-stone-200/40 relative">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
+                    <img
+                      src={project.image}
+                      alt={project.title}
                       className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-500"
                       loading="lazy"
                     />
                   </div>
-                  
+
                   <p className="text-sm text-stone-500 leading-relaxed max-w-xl mb-4">
                     {project.description}
                   </p>
@@ -264,14 +336,21 @@ export default function App() {
                   <div className="flex flex-wrap justify-between items-center gap-4 border-t border-stone-100 pt-3">
                     <div className="flex flex-wrap gap-1">
                       {project.stack.map((s) => (
-                        <span key={s} className="text-[11px] px-2 py-0.5 rounded border border-stone-100 bg-stone-50/50 text-stone-600">
+                        <span
+                          key={s}
+                          className="text-[11px] px-2 py-0.5 rounded border border-stone-100 bg-stone-50/50 text-stone-600"
+                        >
                           {s}
                         </span>
                       ))}
                     </div>
-                    <span className={`text-xs font-medium text-stone-900 inline-flex items-center gap-1 transition-all ${
-                      isHovered ? "opacity-100 translate-x-0" : "lg:opacity-0 lg:-translate-x-2"
-                    }`}>
+                    <span
+                      className={`text-xs font-medium text-stone-900 inline-flex items-center gap-1 transition-all ${
+                        isHovered
+                          ? "opacity-100 translate-x-0"
+                          : "lg:opacity-0 lg:-translate-x-2"
+                      }`}
+                    >
                       View project →
                     </span>
                   </div>
@@ -279,7 +358,6 @@ export default function App() {
               );
             })}
           </div>
-
         </div>
       </div>
 
@@ -292,13 +370,27 @@ export default function App() {
             <span>Stockholm, SE</span>
           </div>
           <div className="flex gap-6">
-            <a href="https://github.com/ab-unit" className="hover:text-stone-900 transition-colors">GitHub</a>
-            <a href="https://www.linkedin.com/in/ahmed-bahobeshi/" className="hover:text-stone-900 transition-colors">LinkedIn</a>
-            <a href="mailto:ahmed.bahobeshi@hotmail.com" className="hover:text-stone-900 transition-colors">Email</a>
+            <a
+              href="https://github.com/ab-unit"
+              className="hover:text-stone-900 transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ahmed-bahobeshi/"
+              className="hover:text-stone-900 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:ahmed.bahobeshi@hotmail.com"
+              className="hover:text-stone-900 transition-colors"
+            >
+              Email
+            </a>
           </div>
         </div>
       </footer>
-
     </div>
   );
 }
