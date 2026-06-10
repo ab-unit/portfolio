@@ -342,6 +342,59 @@ export default function App() {
               </p>
             </div>
 
+            {/* EDUCATION SECTION */}
+            <div className="border-t border-stone-200/80 pt-6 space-y-4">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">
+                Education
+              </span>
+              <div className="space-y-4">
+                <div className="rounded-3xl border border-stone-200 bg-white/80 p-4">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm font-semibold text-stone-900">
+                      Fullstack Development
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.35em] text-stone-400">
+                      Chas Academy, Stockholm
+                    </span>
+                    <span className="text-xs text-stone-500">2024–2026</span>
+                  </div>
+                  <p className="mt-3 text-sm text-stone-600 leading-relaxed">
+                    Developed strong analytical, planning, and problem-solving skills with a foundation in operational management and organisational behaviour.
+                  </p>
+                  <p className="mt-2 text-sm text-stone-600 leading-relaxed">
+                    Foundation studies in business management, covering operations, communication, and workplace organisation.
+                  </p>
+                  <p className="mt-3 text-xs italic text-stone-500">
+                    Demonstrates high capacity for learning new systems and tools — a transferable strength in production environments that use digital reporting, ERP systems, or automated machinery interfaces.
+                  </p>
+                </div>
+
+                <div className="rounded-3xl border border-stone-200 bg-white/80 p-4">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm font-semibold text-stone-900">
+                      Bachelor of Business Administration
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.35em] text-stone-400">
+                      Swinburne University, Melbourne
+                    </span>
+                    <span className="text-xs text-stone-500">2013–2016</span>
+                  </div>
+                </div>
+
+                <div className="rounded-3xl border border-stone-200 bg-white/80 p-4">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm font-semibold text-stone-900">
+                      Diploma in Business Management S
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.35em] text-stone-400">
+                      Swinburne University, Melbourne
+                    </span>
+                    <span className="text-xs text-stone-500">2010–2012</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* INTEGRATED CLEAN TOOLS COMPONENT REGION */}
             <div className="border-t border-stone-200/80 pt-6 space-y-3">
               <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">
