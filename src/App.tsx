@@ -276,7 +276,7 @@ export default function App() {
   return (
     <div className="bg-stone-50/40 text-stone-900 min-h-screen antialiased selection:bg-stone-200">
       {/* HEADERBAR */}
-      <header className="fixed top-0 left-0 w-full h-16 lg:h-20 px-6 lg:px-16 flex justify-between items-center z-50 backdrop-blur-md bg-stone-50/60 lg:bg-transparent border-b border-stone-200 lg:border-none">
+      <header className="fixed top-0 left-0 w-full h-16 lg:h-20 px-6 lg:px-16 flex justify-between items-center z-50 bg-white/95 border-b border-stone-200">
         <span className="text-sm font-semibold tracking-tight">
           Ahmed Bahobeshi
         </span>
@@ -291,7 +291,7 @@ export default function App() {
       {/* SPLIT LAYOUT WINDOW */}
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* LEFT COMPONENT COLUMN (FIXED DESKTOP VIEW WITH HIDDEN SCROLLBAR) */}
-        <div className="relative w-full lg:w-[45%] xl:w-[42%] lg:fixed lg:h-screen left-0 top-0 flex flex-col justify-center p-6 pt-24 pb-12 lg:p-16 lg:pt-20 border-b lg:border-b-0 lg:border-r border-stone-200 bg-stone-100/30 overflow-y-auto min-h-[55vh] lg:min-h-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="relative z-40 w-full lg:w-[45%] xl:w-[42%] lg:fixed lg:h-screen left-0 top-0 flex flex-col justify-center lg:justify-start p-6 pt-32 pb-12 lg:p-16 lg:pt-40 lg:pb-28 border-b lg:border-b-0 lg:border-r border-stone-200 bg-stone-100/30 overflow-y-auto min-h-[55vh] lg:min-h-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <div
             ref={threeRef}
             className="absolute inset-0 z-0 pointer-events-none"
@@ -418,7 +418,7 @@ export default function App() {
         </div>
 
         {/* RIGHT SCROLL PANEL: COMPACT CHASSIS CHANNELS */}
-        <div className="w-full lg:w-[55%] xl:w-[58%] lg:ml-[45%] xl:ml-[42%] p-6 py-12 lg:p-16 lg:pt-36 space-y-12">
+        <div className="w-full lg:w-[55%] xl:w-[58%] lg:ml-[45%] xl:ml-[42%] p-6 pt-20 pb-12 lg:p-16 lg:pt-36 space-y-12">
           <div className="flex justify-between items-center border-b border-stone-200 pb-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
               Selected Projects
